@@ -13,7 +13,17 @@ def carica_dati():
 
 df = carica_dati()
 
-# --- BARRA LATERALE PER I FILTRI ---
+# --- BARRA LATERALE PER I FILTRI E LA CACHE ---
+st.sidebar.header("Pannello di Controllo")
+
+# Pulsante magico per pulire la cache e ricaricare i dati freschi da GitHub
+if st.sidebar.button("🔄 Aggiorna Dati da GitHub"):
+    st.cache_data.clear()
+    st.success("Cache pulita! Dati aggiornati.")
+    # Ricarica i dati freschi dopo aver pulito la cache
+    df = carica_dati()
+
+st.sidebar.markdown("---")
 st.sidebar.header("Filtri Tech")
 
 città_disponibili = sorted(df['città'].unique())
